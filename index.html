@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ka">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Games - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #050510;
+            --neon-purple: #bc13fe;
+            --neon-blue: #00f3ff;
+            --glass-bg: rgba(20, 20, 35, 0.7);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-muted: #a0a0c0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: radial-gradient(circle at top, #1a0b2e 0%, var(--bg-dark) 60%);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* --- Profile Section --- */
+        .profile-section {
+            text-align: center;
+            margin-bottom: 40px;
+            margin-top: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        .profile-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-purple);
+            box-shadow: 0 0 20px rgba(188, 19, 254, 0.4);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+            background: linear-gradient(to right, var(--neon-purple), var(--neon-blue));
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .profile-bio {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        /* --- Social Links --- */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 15px;
+        }
+
+        .social-icon {
+            color: var(--text-main);
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-icon:hover {
+            color: var(--neon-blue);
+            transform: translateY(-3px);
+        }
+
+        /* --- Games Grid --- */
+        .games-container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .game-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: var(--glass-border);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 243, 255, 0.15);
+            border-color: var(--neon-blue);
+        }
+
+        .game-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .game-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            color: var(--text-main);
+        }
+
+        .game-desc {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.3;
+        }
+
+        .play-btn {
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-blue));
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(188, 19, 254, 0.5);
+            transition: 0.3s;
+        }
+
+        .game-card:hover .play-btn {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.6);
+        }
+
+        /* --- Modal (Popup) --- */
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background: #101020;
+            border: 1px solid var(--neon-purple);
+            border-radius: 25px;
+            padding: 30px;
+            width: 90%;
+            max-width: 350px;
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            box-shadow: 0 0 50px rgba(188, 19, 254, 0.2);
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1);
+        }
+
+        .modal-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .platform-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        .btn-android {
+            background: rgba(61, 220, 132, 0.15);
+            color: #3ddc84;
+            border: 1px solid #3ddc84;
+        }
+
+        .btn-android:hover {
+            background: #3ddc84;
+            color: #000;
+            box-shadow: 0 0 20px rgba(61, 220, 132, 0.4);
+        }
+
+        .btn-ios {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid #fff;
+        }
+
+        .btn-ios:hover {
+            background: #fff;
+            color: #000;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- Footer --- */
+        footer {
+            margin-top: auto;
+            padding-top: 40px;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <div class="profile-section">
+        <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
+        <h1 class="profile-name">შენი სახელი</h1>
+        <p class="profile-bio">Game Developer | Cyberpunk Enthusiast</p>
+        
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-tiktok"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+    </div>
+
+    <div class="games-container" id="gamesList">
+        </div>
+
+    <div class="modal" id="downloadModal">
+        <div class="modal-content">
+            <i class="fas fa-times close-modal" onclick="closeModal()"></i>
+            <h3 class="modal-title" id="modalGameTitle">გადმოწერა</h3>
+            
+            <a href="#" id="androidLink" class="platform-btn btn-android" target="_blank">
+                <i class="fab fa-android"></i> Android
+            </a>
+            
+            <a href="#" id="iosLink" class="platform-btn btn-ios" target="_blank">
+                <i class="fab fa-apple"></i> iOS
+            </a>
+        </div>
+    </div>
+
+    <footer>
+        © 2024 შენი ბრენდი
+    </footer>
+
+    <script>
+        // --- აქ ჩაწერე შენი თამაშები ---
+        const games = [
+            {
+                title: "Spy - Cyber Noir",
+                desc: "იპოვე ჯაშუში მეგობრებს შორის. Cyberpunk სტილის დეტექტიური თამაში.",
+                icon: "icons/icon-512x512.png", // მიუთითე შენი თამაშის აიქონის ლინკი
+                android: "https://play.google.com/store/apps/details?id=com.sheni.spy", // შენი Play Store ლინკი
+                ios: "https://apps.apple.com/app/id123456789" // შენი App Store ლინკი
+            },
+            {
+                title: "Fake Artist",
+                desc: "ყველა ხატავს, ერთმა არ იცის რა. სახალისო სამაგიდო თამაში.",
+                icon: "https://via.placeholder.com/100/bc13fe/ffffff?text=FA", // დროებითი აიქონი
+                android: "https://play.google.com/store/apps/details?id=com.sheni.artist",
+                ios: "https://apps.apple.com/app/id987654321"
+            }
+            // შეგიძლია დაამატო კიდევ თამაშები
+        ];
+
+        // --- თამაშების გამოჩენა ---
+        const gamesContainer = document.getElementById('gamesList');
+
+        games.forEach((game, index) => {
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.onclick = () => openModal(index); // მთლიან ბარათზე დაჭერით იხსნება
+
+            card.innerHTML = `
+                <img src="${game.icon}" alt="${game.title}" class="game-icon">
+                <div class="game-info">
+                    <div class="game-title">${game.title}</div>
+                    <div class="game-desc">${game.desc}</div>
+                </div>
+                <div class="play-btn">
+                    <i class="fas fa-download"></i>
+                </div>
+            `;
+            gamesContainer.appendChild(card);
+        });
+
+        // --- მოდალის ლოგიკა ---
+        const modal = document.getElementById('downloadModal');
+        const modalTitle = document.getElementById('modalGameTitle');
+        const androidBtn = document.getElementById('androidLink');
+        const iosBtn = document.getElementById('iosLink');
+
+        function openModal(index) {
+            const game = games[index];
+            modalTitle.textContent = game.title;
+            
+            // ლინკების განახლება
+            androidBtn.href = game.android;
+            iosBtn.href = game.ios;
+
+            modal.classList.add('active');
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        // მოდალის დახურვა ფონზე დაჭერისას
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+    </script>
+</body>
+</html>
