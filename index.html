@@ -323,8 +323,8 @@
     white-space: nowrap;
   }
 
-  /* Modals */
-  .modal-overlay, .game-modal-overlay {
+  /* Game Modal (only for Android/iOS direct links) */
+  .game-modal-overlay {
     position: fixed;
     inset: 0;
     background: rgba(0,0,0,0.75);
@@ -337,11 +337,11 @@
     pointer-events: none;
     transition: opacity .3s ease;
   }
-  .modal-overlay.show, .game-modal-overlay.show {
+  .game-modal-overlay.show {
     opacity: 1;
     pointer-events: auto;
   }
-  .modal, .game-modal {
+  .game-modal {
     background: #1c1c26;
     border-radius: 32px;
     width: 90%;
@@ -351,42 +351,13 @@
     transform: scale(0.95);
     transition: transform .25s;
   }
-  .modal-overlay.show .modal, .game-modal-overlay.show .game-modal {
+  .game-modal-overlay.show .game-modal {
     transform: scale(1);
   }
-  .modal h2, .game-modal h3 {
+  .game-modal h3 {
     font-family: 'Syne', sans-serif;
     text-align: center;
     margin-bottom: 20px;
-  }
-  .ios-step {
-    display: flex;
-    gap: 14px;
-    margin-bottom: 16px;
-    background: rgba(255,255,255,.04);
-    padding: 12px;
-    border-radius: 16px;
-  }
-  .ios-step-num {
-    width: 28px;
-    height: 28px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: bold;
-  }
-  .modal-close, .close-modal-btn {
-    width: 100%;
-    margin-top: 20px;
-    background: rgba(124,92,252,0.2);
-    border: none;
-    padding: 12px;
-    border-radius: 40px;
-    font-weight: 600;
-    color: var(--accent2);
-    cursor: pointer;
   }
   .platform-buttons {
     display: flex;
@@ -414,6 +385,17 @@
   .platform-btn.ios {
     background: rgba(255,255,255,0.08);
     border-color: rgba(255,255,255,0.2);
+  }
+  .close-modal-btn {
+    width: 100%;
+    margin-top: 20px;
+    background: rgba(124,92,252,0.2);
+    border: none;
+    padding: 12px;
+    border-radius: 40px;
+    font-weight: 600;
+    color: var(--accent2);
+    cursor: pointer;
   }
 
   /* apps page, profile */
@@ -533,7 +515,8 @@
     <div class="featured-card">
       <div class="app-row"><div class="app-icon-big">🕵️</div><div><div class="app-name">Spy - Pro Edition</div><div class="app-tagline">Ultimate spy party game</div></div></div>
       <div class="dl-buttons">
-        <button class="dl-btn ios" onclick="showIOSModal()"><i class="fab fa-apple"></i> iOS (WebApp)</button>
+        <!-- iOS button opens link directly without any modal -->
+        <button class="dl-btn ios" onclick="window.open('https://spy-pro.netlify.app/', '_blank')"><i class="fab fa-apple"></i> iOS (WebApp)</button>
         <button class="dl-btn android" onclick="window.open('https://median.co/share/xlprbda#apk','_blank')"><i class="fab fa-android"></i> Android APK</button>
       </div>
     </div>
@@ -552,7 +535,7 @@
   </div>
 </div>
 
-<!-- GAMES (fully migrated from second file, no images, emoji only) -->
+<!-- GAMES -->
 <div class="page" id="games">
   <div class="page-header"><h1>Games</h1><p>party · strategy · cyberpunk</p></div>
   <div id="gamesContainer" class="games-grid"></div>
@@ -569,7 +552,7 @@
   <div class="profile-hero">
     <div class="profile-avatar">G</div>
     <div class="profile-name">Gurika Kartvelishvili</div>
-    <div class="profile-role">Web Developer · Designer</div>
+    <div class="profile-role">Indie Game Dev · Designer</div>
     <div class="profile-links">
       <a href="#" class="profile-link"><i class="fab fa-youtube"></i> YouTube</a>
       <a href="https://www.tiktok.com/@gurik.a_kartv" class="profile-link"><i class="fab fa-tiktok"></i> TikTok</a>
@@ -595,18 +578,7 @@
   </div>
 </div>
 
-<!-- MODALS -->
-<div class="modal-overlay" id="iosModal" onclick="hideIOSModal(event)">
-  <div class="modal">
-    <div class="modal-handle" style="width:40px;height:4px;background:#aaa;margin:0 auto 20px;border-radius:2px;"></div>
-    <h2><i class="fab fa-apple"></i> Install Guide</h2>
-    <div class="ios-step"><div class="ios-step-num">1</div><div>Open <strong>Safari</strong> (Chrome won't work)</div></div>
-    <div class="ios-step"><div class="ios-step-num">2</div><div>Tap share <strong>📤</strong> button</div></div>
-    <div class="ios-step"><div class="ios-step-num">3</div><div>Choose <strong>"Add to Home Screen"</strong></div></div>
-    <button class="modal-close" onclick="hideIOSModal()">Got it</button>
-  </div>
-</div>
-
+<!-- GAME MODAL (only listing Android/iOS links) -->
 <div class="game-modal-overlay" id="gameModal">
   <div class="game-modal">
     <h3 id="modalGameTitle">Game</h3>
@@ -662,7 +634,7 @@
 
   function escapeHtml(str) { return str.replace(/[&<>]/g, function(m){ if(m==='&') return '&amp;'; if(m==='<') return '&lt;'; if(m==='>') return '&gt;'; return m;}); }
 
-  // Game modal
+  // Game modal - opens with direct links
   const gameModal = document.getElementById('gameModal');
   const modalTitle = document.getElementById('modalGameTitle');
   const androidLink = document.getElementById('modalAndroidLink');
@@ -682,16 +654,13 @@
   window.closeGameModal = closeGameModal;
   gameModal.addEventListener('click', (e) => { if (e.target === gameModal) closeGameModal(); });
 
-  // ----- Navigation & Effects (unchanged, but kept) -----
+  // ----- Navigation & Effects -----
   let audioCtx = null;
   function getAudioCtx() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
   function playClickSound() { try { const ctx = getAudioCtx(); if (ctx.state === 'suspended') ctx.resume(); const osc = ctx.createOscillator(); const gain = ctx.createGain(); osc.connect(gain); gain.connect(ctx.destination); osc.type = 'sine'; osc.frequency.value = 350; gain.gain.value = 0.08; gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.1); osc.start(); osc.stop(ctx.currentTime + 0.1); } catch(e) {} }
   function createRipple(btn, e) { const rect = btn.getBoundingClientRect(); const ripple = document.createElement('span'); ripple.className = 'ripple'; const size = Math.max(rect.width, rect.height); const x = (e?.clientX ?? rect.left + rect.width/2) - rect.left - size/2; const y = (e?.clientY ?? rect.top + rect.height/2) - rect.top - size/2; ripple.style.cssText = `width:${size}px;height:${size}px;left:${x}px;top:${y}px;`; btn.appendChild(ripple); ripple.addEventListener('animationend', () => ripple.remove()); }
   function navigate(btn, pageId, e) { playClickSound(); createRipple(btn, e); document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(pageId).classList.add('active'); document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); btn.classList.add('active'); if (navigator.vibrate) navigator.vibrate(8); }
   window.navigate = navigate;
-  function showIOSModal() { document.getElementById('iosModal').classList.add('show'); }
-  function hideIOSModal(e) { if (!e || e.target === document.getElementById('iosModal')) document.getElementById('iosModal').classList.remove('show'); }
-  window.showIOSModal = showIOSModal; window.hideIOSModal = hideIOSModal;
   async function handleSubmit(e) { e.preventDefault(); const form = e.target; const btn = form.querySelector('.submit-btn'); btn.textContent = '⏳ Sending...'; btn.disabled = true; try { const data = new FormData(form); const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } }); if (res.ok) { form.reset(); document.getElementById('formSuccess').style.display = 'block'; setTimeout(() => { document.getElementById('formSuccess').style.display = 'none'; }, 4000); btn.textContent = '✅ Sent!'; } else { btn.textContent = '❌ Error'; btn.disabled = false; } } catch { btn.textContent = '❌ Error'; btn.disabled = false; } }
   window.handleSubmit = handleSubmit;
   window.addEventListener('DOMContentLoaded', () => { renderAllGames(); document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById('home').classList.add('active'); document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active')); document.querySelector('.nav-btn.home-btn').classList.add('active'); });
