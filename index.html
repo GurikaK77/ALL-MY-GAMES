@@ -6,7 +6,11 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#0b0b0d">
+    <meta name="description" content="Gurika Kartvelishvili · Full Stack Web Developer · Game Dev · 8+ Games · iOS & Android">
+    <meta name="keywords" content="web developer, game developer, full stack, Tbilisi, Georgia, portfolio, JavaScript, Angular, Unity, C#">
     <title>Gurika · Full Stack Web Dev</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🕵️</text></svg>">
+    <link rel="manifest" href="/manifest.json" crossorigin="use-credentials">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -291,6 +295,38 @@
             }
         }
 
+        /* Scroll to Top */
+        .scroll-top-btn {
+            position: fixed;
+            bottom: calc(var(--nav-h) + var(--safe-bottom) + 12px);
+            right: 16px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            color: var(--accent2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            z-index: 90;
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        .scroll-top-btn.visible {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+        .scroll-top-btn:active {
+            transform: scale(0.9);
+        }
+
         .page-header {
             padding: 44px 20px 14px;
             position: relative;
@@ -347,22 +383,12 @@
             letter-spacing: -1px;
         }
         @keyframes avatarPulse {
-            0%,
-            100% {
-                box-shadow: 0 0 0 4px rgba(200, 155, 70, 0.15), 0 0 40px rgba(200, 155, 70, 0.2);
-            }
-            50% {
-                box-shadow: 0 0 0 9px rgba(200, 155, 70, 0.05), 0 0 55px rgba(200, 155, 70, 0.3);
-            }
+            0%, 100% { box-shadow: 0 0 0 4px rgba(200,155,70,0.15), 0 0 40px rgba(200,155,70,0.2); }
+            50% { box-shadow: 0 0 0 9px rgba(200,155,70,0.05), 0 0 55px rgba(200,155,70,0.3); }
         }
         @keyframes avatarGradient {
-            0%,
-            100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
         }
         .hero h1 {
             font-family: 'Playfair Display', 'Cormorant Garamond', serif;
@@ -872,6 +898,7 @@
             flex-shrink: 0;
         }
 
+        /* Profile new sections */
         .profile-hero {
             text-align: center;
             padding: 40px 20px 18px;
@@ -952,6 +979,159 @@
             color: var(--text2);
             font-weight: 500;
         }
+
+        .bio-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--card-radius);
+            padding: 16px;
+            margin: 0 20px 18px;
+            color: var(--text2);
+            font-size: var(--font-sm);
+            line-height: 1.6;
+        }
+
+        .skills-grid, .services-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            padding: 0 20px 18px;
+        }
+        .skill-chip, .service-card {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: var(--font-xs);
+            color: var(--accent2);
+            font-weight: 500;
+            letter-spacing: 0.03em;
+            transition: all 0.25s;
+            white-space: nowrap;
+        }
+        .service-card {
+            flex: 1 0 auto;
+            min-width: 120px;
+            padding: 14px 12px;
+            text-align: center;
+            border-radius: var(--card-radius-sm);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+        .service-card .service-icon {
+            font-size: 24px;
+        }
+
+        .timeline {
+            padding: 0 20px 18px;
+        }
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            position: relative;
+        }
+        .tl-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 6px;
+            flex-shrink: 0;
+        }
+        .tl-content h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: var(--font-md);
+            color: #f0e8d5;
+            font-weight: 600;
+        }
+        .tl-content span {
+            color: var(--muted);
+            font-size: var(--font-xs);
+        }
+        .tl-content p {
+            margin-top: 4px;
+            font-size: var(--font-sm);
+            color: var(--text2);
+        }
+
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--card2);
+            border: 1px solid var(--accent);
+            border-radius: 28px;
+            padding: 12px 24px;
+            margin: 0 20px 18px;
+            color: var(--accent2);
+            font-weight: 600;
+            text-decoration: none;
+            font-size: var(--font-sm);
+            transition: all 0.25s;
+            cursor: pointer;
+            touch-action: manipulation;
+        }
+        .cv-btn:hover, .cv-btn:active {
+            background: rgba(200, 155, 70, 0.1);
+            border-color: var(--accent2);
+        }
+
+        .lang-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 0 20px 18px;
+        }
+        .lang-row span {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: var(--font-xs);
+            color: var(--text2);
+        }
+
+        .currently-banner {
+            background: linear-gradient(135deg, rgba(200,155,70,0.15), rgba(200,155,70,0.05));
+            border: 1px solid rgba(200, 155, 70, 0.25);
+            border-radius: var(--card-radius);
+            padding: 14px;
+            margin: 0 20px 18px;
+            text-align: center;
+            color: var(--gold-pale);
+            font-size: var(--font-sm);
+            font-weight: 500;
+        }
+
+        .github-stats {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            padding: 0 20px 18px;
+            flex-wrap: wrap;
+        }
+        .github-stat {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: var(--card-radius-sm);
+            padding: 12px 18px;
+            text-align: center;
+        }
+        .github-stat .num {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: var(--font-lg);
+            color: var(--accent2);
+        }
+        .github-stat .lbl {
+            font-size: var(--font-xs);
+            color: var(--muted);
+        }
+
         .contact-section {
             padding: 0 20px 26px;
         }
@@ -1048,15 +1228,8 @@
             animation: csPulse 2.5s ease-in-out infinite;
         }
         @keyframes csPulse {
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.7;
-            }
-            50% {
-                transform: scale(1.06);
-                opacity: 1;
-            }
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.06); opacity: 1; }
         }
         .cs-title {
             font-family: 'Playfair Display', serif;
@@ -1071,265 +1244,85 @@
             margin-top: 6px;
         }
 
-        button,
-        .nav-btn,
-        .game-card,
-        .app-card,
-        .website-card,
-        .quick-game-chip,
-        .dl-btn,
-        .platform-btn,
-        .close-modal-btn,
-        .get-badge,
-        .profile-link,
-        .submit-btn {
+        button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn {
             -webkit-user-select: none;
             user-select: none;
         }
-        input,
-        textarea {
+        input, textarea {
             -webkit-user-select: text;
             user-select: text;
         }
 
+        /* Responsive */
         @media (max-width: 767px) {
-            .desktop-nav {
-                display: none !important;
-            }
-            nav.mobile-nav {
-                display: flex;
-            }
-            .page {
-                bottom: calc(var(--nav-h) + var(--safe-bottom) + 6px);
-            }
+            .desktop-nav { display: none !important; }
+            nav.mobile-nav { display: flex; }
+            .page { bottom: calc(var(--nav-h) + var(--safe-bottom) + 6px); }
         }
-
         @media (min-width: 768px) {
-            html {
-                overflow: auto;
-                position: static;
-            }
-            body {
-                overflow: auto;
-                position: static;
-                padding-top: 64px;
-            }
-            body::before,
-            body::after {
-                position: fixed;
-            }
-
-            .desktop-nav {
-                display: flex;
-            }
-            nav.mobile-nav {
-                display: none !important;
-            }
-
+            html { overflow: auto; position: static; }
+            body { overflow: auto; position: static; padding-top: 64px; }
+            body::before, body::after { position: fixed; }
+            .desktop-nav { display: flex; }
+            nav.mobile-nav { display: none !important; }
             .page {
-                position: relative;
-                inset: auto;
-                bottom: auto;
-                opacity: 1;
-                transform: none;
-                pointer-events: auto;
+                position: relative; inset: auto; bottom: auto;
+                opacity: 1; transform: none; pointer-events: auto;
                 display: none;
-                max-width: 1100px;
-                margin: 0 auto;
+                max-width: 1100px; margin: 0 auto;
                 padding: 30px 40px 60px;
                 overflow-y: visible;
             }
-            .page.active {
-                display: block;
-                opacity: 1;
-                transform: none;
-            }
-            .page-header {
-                padding: 20px 0 16px;
-                text-align: center;
-            }
-            .page-header h1 {
-                font-size: 38px;
-            }
-            .section-label {
-                padding: 0;
-                text-align: center;
-            }
-            .hero {
-                padding: 30px 0 20px;
-            }
-            .hero-avatar {
-                width: 100px;
-                height: 100px;
-                font-size: 40px;
-            }
-            .hero h1 {
-                font-size: 42px;
-            }
-            .hero-sub {
-                font-size: 15px;
-            }
-            .stats-row {
-                padding: 0 0 20px;
-                gap: 16px;
-            }
-            .stat-card {
-                padding: 20px 12px;
-                border-radius: var(--card-radius);
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-            .stat-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(200, 155, 70, 0.3);
-                box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-            }
-            .featured-card {
-                margin: 0 0 16px;
-                padding: 24px 22px;
-                transition: all 0.3s;
-            }
-            .featured-card:hover {
-                border-color: rgba(200, 155, 70, 0.4);
-                box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-            }
-            .dl-buttons {
-                flex-direction: row;
-                gap: 12px;
-            }
-            .dl-btn {
-                flex: 1;
-                padding: 14px 20px;
-                font-size: 14px;
-                cursor: pointer;
-                transition: all 0.25s;
-            }
-            .dl-btn:hover {
-                transform: translateY(-1px);
-            }
-            .dl-btn.ios:hover {
-                box-shadow: 0 4px 16px rgba(255, 255, 255, 0.06);
-            }
-            .dl-btn.android:hover {
-                box-shadow: 0 4px 16px rgba(160, 180, 120, 0.12);
-            }
-            .quick-games-row {
-                padding: 0;
-                gap: 10px;
-                justify-content: center;
-                flex-wrap: wrap;
-                overflow-x: visible;
-            }
-            .quick-game-chip {
-                cursor: pointer;
-                transition: all 0.25s;
-            }
-            .quick-game-chip:hover {
-                transform: translateY(-2px);
-                border-color: rgba(200, 155, 70, 0.4);
-                box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-            }
-            .games-grid {
-                padding: 0;
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-            }
-            .game-card {
-                cursor: pointer;
-                transition: all 0.3s;
-                min-height: 90px;
-            }
-            .game-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(200, 155, 70, 0.35);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-            }
-            .game-card:active {
-                transform: scale(0.98);
-            }
-            .website-card {
-                margin: 0 0 10px;
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-            .website-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(200, 155, 70, 0.35);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-            }
-            #websitesGrid {
-                display: grid;
-                grid-template-columns: repeat(3, 1fr);
-                gap: 14px;
-                padding: 0;
-            }
-            #websitesGrid .website-card {
-                margin: 0;
-            }
-            .app-card {
-                margin: 0;
-                cursor: pointer;
-                transition: all 0.3s;
-                max-width: 400px;
-            }
-            .app-card:hover {
-                transform: translateY(-2px);
-                border-color: rgba(200, 155, 70, 0.35);
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
-            }
-            .profile-hero {
-                padding: 20px 0 18px;
-            }
-            .info-cards-row {
-                padding: 0 0 18px;
-                max-width: 500px;
-                margin: 0 auto;
-            }
-            .contact-section {
-                max-width: 500px;
-                margin: 0 auto;
-                padding: 0 0 26px;
-            }
-            .submit-btn {
-                cursor: pointer;
-                transition: all 0.3s;
-            }
-            .submit-btn:hover {
-                transform: translateY(-2px);
-                box-shadow: 0 6px 22px rgba(200, 155, 70, 0.35);
-            }
-            .get-badge {
-                cursor: pointer;
+            .page.active { display: block; opacity: 1; transform: none; }
+            .page-header { padding: 20px 0 16px; text-align: center; }
+            .page-header h1 { font-size: 38px; }
+            .section-label { padding: 0; text-align: center; }
+            .hero { padding: 30px 0 20px; }
+            .hero-avatar { width: 100px; height: 100px; font-size: 40px; }
+            .hero h1 { font-size: 42px; }
+            .hero-sub { font-size: 15px; }
+            .stats-row { padding: 0 0 20px; gap: 16px; }
+            .stat-card { padding: 20px 12px; border-radius: var(--card-radius); cursor: pointer; }
+            .stat-card:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+            .featured-card { margin: 0 0 16px; padding: 24px 22px; }
+            .featured-card:hover { border-color: rgba(200,155,70,0.4); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
+            .dl-buttons { flex-direction: row; gap: 12px; }
+            .dl-btn { flex: 1; padding: 14px 20px; font-size: 14px; }
+            .dl-btn:hover { transform: translateY(-1px); }
+            .dl-btn.ios:hover { box-shadow: 0 4px 16px rgba(255,255,255,0.06); }
+            .dl-btn.android:hover { box-shadow: 0 4px 16px rgba(160,180,120,0.12); }
+            .quick-games-row { padding: 0; gap: 10px; justify-content: center; flex-wrap: wrap; overflow-x: visible; }
+            .quick-game-chip { cursor: pointer; }
+            .quick-game-chip:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.4); box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+            .games-grid { padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+            .game-card { min-height: 90px; }
+            .game-card:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.35); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+            #websitesGrid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; padding: 0; }
+            #websitesGrid .website-card { margin: 0; }
+            .app-card { margin: 0; max-width: 400px; }
+            .app-card:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.35); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
+            .profile-hero { padding: 20px 0 18px; }
+            .info-cards-row { padding: 0 0 18px; max-width: 500px; margin: 0 auto; }
+            .contact-section { max-width: 500px; margin: 0 auto; padding: 0 0 26px; }
+            .bio-card, .skills-grid, .services-grid, .timeline, .lang-row, .cv-btn, .currently-banner, .github-stats {
+                max-width: 600px; margin-left: auto; margin-right: auto;
             }
         }
-
         @media (min-width: 1024px) {
-            .games-grid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-            #websitesGrid {
-                grid-template-columns: repeat(4, 1fr);
-                gap: 16px;
-            }
-            .page {
-                padding: 40px 60px 70px;
-            }
-            .hero h1 {
-                font-size: 48px;
-            }
-            .page-header h1 {
-                font-size: 44px;
-            }
+            .games-grid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+            #websitesGrid { grid-template-columns: repeat(4, 1fr); gap: 16px; }
+            .page { padding: 40px 60px 70px; }
+            .hero h1 { font-size: 48px; }
+            .page-header h1 { font-size: 44px; }
         }
     </style>
 </head>
 <body>
     <!-- DESKTOP TOP NAV -->
-    <nav class="desktop-nav" id="desktopNav">
-        <div class="brand" onclick="navigate(null,'home')">GURIKA</div>
+    <nav class="desktop-nav" id="desktopNav" aria-label="Desktop navigation">
+        <div class="brand" onclick="navigateDesktop(null,'home')" role="button" tabindex="0">GURIKA</div>
         <div class="dn-links">
+            <button class="dn-link active" data-page="home" onclick="navigateDesktop(this,'home')">Home</button>
             <button class="dn-link" data-page="apps" onclick="navigateDesktop(this,'apps')">Apps</button>
             <button class="dn-link" data-page="games" onclick="navigateDesktop(this,'games')">Games</button>
             <button class="dn-link" data-page="websites" onclick="navigateDesktop(this,'websites')">Websites</button>
@@ -1338,7 +1331,7 @@
     </nav>
 
     <!-- HOME PAGE -->
-    <div class="page active" id="home">
+    <div class="page active" id="home" aria-label="Home page">
         <div class="hero">
             <div class="hero-avatar">GK</div>
             <h1>Gurika Kartvelishvili</h1>
@@ -1377,7 +1370,7 @@
     </div>
 
     <!-- APPS PAGE -->
-    <div class="page" id="apps">
+    <div class="page" id="apps" aria-label="Applications page">
         <div class="page-header"><h1>Applications</h1><p>utility · lifestyle · wellness</p></div>
         <div style="padding:0;">
             <div class="app-card" onclick="window.open('https://lifemode.netlify.app/','_blank')">
@@ -1389,25 +1382,25 @@
     </div>
 
     <!-- GAMES PAGE -->
-    <div class="page" id="games">
+    <div class="page" id="games" aria-label="Games page">
         <div class="page-header"><h1>All Games</h1><p>party · strategy · social · cyberpunk</p></div>
         <div id="gamesContainer" class="games-grid"></div>
     </div>
 
     <!-- WEBSITES PAGE -->
-    <div class="page" id="websites">
+    <div class="page" id="websites" aria-label="Websites page">
         <div class="page-header"><h1>Web Sites</h1><p>immersive digital experiences</p></div>
         <div id="websitesGrid" class="games-grid"></div>
     </div>
 
-    <!-- PROFILE PAGE -->
-    <div class="page" id="profile">
+    <!-- PROFILE PAGE (expanded with new About & Skills) -->
+    <div class="page" id="profile" aria-label="Profile page">
         <div class="profile-hero">
             <div class="profile-avatar">G</div>
             <div class="profile-name">Gurika Kartvelishvili</div>
             <div class="profile-role">Full Stack Web Developer · Game Dev · Designer</div>
             <div class="profile-links">
-                <a href="#" class="profile-link"><i class="fab fa-youtube"></i> YouTube</a>
+                <a href="https://youtube.com/@gurikakartvelishvili" class="profile-link" target="_blank" rel="noopener"><i class="fab fa-youtube"></i> YouTube</a>
                 <a href="https://www.tiktok.com/@gurik.a_kartv" class="profile-link" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
                 <a href="https://github.com/GurikaK77" class="profile-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
             </div>
@@ -1417,10 +1410,101 @@
             <div class="info-card"><div class="ic-icon">🏢</div><div>Available</div></div>
             <div class="info-card"><div class="ic-icon">✉️</div><div>&lt; 24h reply</div></div>
         </div>
+
+        <!-- Updated About Section -->
+        <div class="section-label">👤 About</div>
+        <div class="bio-card">
+            I'm a 16-year-old Full Stack Web Developer based in Tbilisi, Georgia. I build modern, responsive websites and mobile apps, and I also have hands‑on experience with Unity 2D/3D game development. I love turning creative ideas into polished digital experiences, whether it's a full‑stack web app, a native mobile app, or an interactive game.
+        </div>
+
+        <!-- Updated Skills -->
+        <div class="section-label">🛠️ Skills & Tech Stack</div>
+        <div class="skills-grid">
+            <span class="skill-chip">HTML</span>
+            <span class="skill-chip">CSS</span>
+            <span class="skill-chip">JavaScript</span>
+            <span class="skill-chip">Angular</span>
+            <span class="skill-chip">C#</span>
+            <span class="skill-chip">Entity Framework</span>
+            <span class="skill-chip">SQL Server</span>
+            <span class="skill-chip">Unity</span>
+            <span class="skill-chip">Git</span>
+            <span class="skill-chip">API</span>
+        </div>
+
+        <!-- Services -->
+        <div class="section-label">💼 Services</div>
+        <div class="services-grid">
+            <div class="service-card"><div class="service-icon">🌐</div><div>Web Development</div><small>Full stack apps</small></div>
+            <div class="service-card"><div class="service-icon">📱</div><div>Mobile Apps</div><small>iOS & Android</small></div>
+            <div class="service-card"><div class="service-icon">🎮</div><div>Game Dev</div><small>Unity 2D/3D</small></div>
+            <div class="service-card"><div class="service-icon">🎨</div><div>UI/UX Design</div><small>Modern interfaces</small></div>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div class="section-label">📋 Experience</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>Freelance Full Stack Developer</h4>
+                    <span>2023 – Present</span>
+                    <p>Developed 8+ mobile games, 2 apps, and multiple high‑conversion websites for international clients.</p>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>Game Designer & Developer</h4>
+                    <span>2022 – Present</span>
+                    <p>Created popular party games like Spy, Fake Artist, Cyber Court — played by thousands worldwide.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Education -->
+        <div class="section-label">🎓 Education</div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="tl-dot"></div>
+                <div class="tl-content">
+                    <h4>Computer Science (Self‑taught + courses)</h4>
+                    <span>Ongoing</span>
+                    <p>Continuous learning through online platforms, bootcamps, and hands‑on projects.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Languages -->
+        <div class="section-label">🌍 Languages</div>
+        <div class="lang-row">
+            <span>🇬🇪 Georgian · Native</span>
+            <span>🇬🇧 English · Proficient</span>
+            <span>🇷🇺 Russian · Intermediate</span>
+        </div>
+
+        <!-- GitHub Stats -->
+        <div class="section-label">⭐ GitHub Activity</div>
+        <div class="github-stats">
+            <div class="github-stat"><div class="num">20+</div><div class="lbl">Repositories</div></div>
+            <div class="github-stat"><div class="num">50+</div><div class="lbl">Stars</div></div>
+            <div class="github-stat"><div class="num">🟢</div><div class="lbl">Active</div></div>
+        </div>
+
+        <!-- CV Download -->
+        <a href="/gurika-cv.pdf" class="cv-btn" download><i class="fas fa-download"></i> Download CV</a>
+
+        <!-- Currently Working On -->
+        <div class="currently-banner">
+            🚧 Currently building: <strong>New multiplayer party game & personal blog</strong>
+        </div>
+
         <div class="divider"></div>
         <div class="contact-section">
             <h2>📩 Get In Touch</h2>
             <form id="contactForm" action="https://formspree.io/f/xvzjddpw" method="POST" onsubmit="handleSubmit(event)">
+                <!-- Honeypot spam protection -->
+                <input type="text" name="_gotcha" style="display:none">
                 <input type="text" name="name" placeholder="Your name" required autocomplete="name">
                 <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
                 <input type="text" name="location" placeholder="City, Country" autocomplete="address-level2">
@@ -1432,7 +1516,7 @@
     </div>
 
     <!-- GAME MODAL -->
-    <div class="game-modal-overlay" id="gameModal">
+    <div class="game-modal-overlay" id="gameModal" aria-hidden="true">
         <div class="game-modal">
             <h3 id="modalGameTitle">Game</h3>
             <p class="modal-desc" id="modalGameDesc"></p>
@@ -1444,74 +1528,55 @@
         </div>
     </div>
 
+    <!-- SCROLL TO TOP BUTTON -->
+    <button class="scroll-top-btn" id="scrollTopBtn" aria-label="Scroll to top" onclick="document.querySelector('.page.active').scrollTo({top:0,behavior:'smooth'}); window.scrollTo({top:0,behavior:'smooth'});">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
     <!-- MOBILE BOTTOM NAV -->
-    <nav class="mobile-nav" id="mobileNav">
-        <button class="nav-btn" data-page="apps" onclick="navigate(this,'apps')">
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+        <button class="nav-btn" data-page="apps" onclick="navigate(this,'apps',event)">
             <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="9" height="9" rx="2"/><rect x="13" y="2" width="9" height="9" rx="2"/><rect x="2" y="13" width="9" height="9" rx="2"/><rect x="13" y="13" width="9" height="9" rx="2"/></svg></div>Apps
         </button>
-        <button class="nav-btn" data-page="games" onclick="navigate(this,'games')">
+        <button class="nav-btn" data-page="games" onclick="navigate(this,'games',event)">
             <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="4"/><path d="M7 10v4M5 12h4"/><circle cx="17" cy="11" r="1" fill="currentColor"/><circle cx="19" cy="13" r="1" fill="currentColor"/></svg></div>Games
         </button>
-        <button class="nav-btn home-btn active" data-page="home" onclick="navigate(this,'home')">
+        <button class="nav-btn home-btn active" data-page="home" onclick="navigate(this,'home',event)">
             <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>Home
         </button>
-        <button class="nav-btn" data-page="websites" onclick="navigate(this,'websites')">
+        <button class="nav-btn" data-page="websites" onclick="navigate(this,'websites',event)">
             <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg></div>Websites
         </button>
-        <button class="nav-btn" data-page="profile" onclick="navigate(this,'profile')">
+        <button class="nav-btn" data-page="profile" onclick="navigate(this,'profile',event)">
             <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>Profile
         </button>
     </nav>
 
     <script>
         const GAMES_LIST = [
-            { title: "Spy - Cyber Noir Edition",
-                desc: "Detective spy thriller — find the impostor among friends in a cyberpunk world.",
-                android: "https://median.co/share/mbxjdel#apk", ios: "https://spy15.netlify.app/", emoji: "🕵️" },
-            { title: "Spy - Pro Edition",
-                desc: "Premium spy game with advanced mechanics & deeper strategy layers.",
-                android: "https://median.co/share/xlprbda#apk", ios: "https://spy-pro.netlify.app/", emoji: "🎭" },
-            { title: "Fake Artist",
-                desc: "One player doesn't know the word — hilarious drawing & guessing game.",
-                android: "https://median.co/share/eeenoqo#apk", ios: "https://fakeartist.netlify.app/", emoji: "🎨" },
-            { title: "System Glitch",
-                desc: "Party word game with glitch mechanics & unexpected chaotic twists.",
-                android: "https://median.co/share/qddoxym#apk", ios: "https://proterror.netlify.app/", emoji: "⚡" },
-            { title: "Cyber Auction",
-                desc: "Bid on answers, win virtual coins — high-stakes quiz showdown.",
-                android: "https://median.co/share/pwwzyre#apk", ios: "https://cyberauction.netlify.app/", emoji: "💰" },
-            { title: "Cyber Court",
-                desc: "Defend or accuse your friends in a hilarious parody courtroom drama.",
-                android: "https://median.co/share/krrxewx#apk", ios: "https://cybercourt.netlify.app/", emoji: "⚖️" },
-            { title: "Protocol: Traitor",
-                desc: "Complete secret missions or sabotage the team from the shadows.",
-                android: "https://median.co/share/mbbezwz#apk", ios: "https://prtraitor.netlify.app/", emoji: "🔪" },
-            { title: "LifeMode Ultimate",
-                desc: "Smart recovery tracker — train hard but never overexert yourself.",
-                android: "https://median.co/share/nmmpjbp#apk", ios: "https://lifemode.netlify.app/", emoji: "🌿" }
+            { title: "Spy - Cyber Noir Edition", desc: "Detective spy thriller — find the impostor among friends in a cyberpunk world.", android: "https://median.co/share/mbxjdel#apk", ios: "https://spy15.netlify.app/", emoji: "🕵️" },
+            { title: "Spy - Pro Edition", desc: "Premium spy game with advanced mechanics & deeper strategy layers.", android: "https://median.co/share/xlprbda#apk", ios: "https://spy-pro.netlify.app/", emoji: "🎭" },
+            { title: "Fake Artist", desc: "One player doesn't know the word — hilarious drawing & guessing game.", android: "https://median.co/share/eeenoqo#apk", ios: "https://fakeartist.netlify.app/", emoji: "🎨" },
+            { title: "System Glitch", desc: "Party word game with glitch mechanics & unexpected chaotic twists.", android: "https://median.co/share/qddoxym#apk", ios: "https://proterror.netlify.app/", emoji: "⚡" },
+            { title: "Cyber Auction", desc: "Bid on answers, win virtual coins — high-stakes quiz showdown.", android: "https://median.co/share/pwwzyre#apk", ios: "https://cyberauction.netlify.app/", emoji: "💰" },
+            { title: "Cyber Court", desc: "Defend or accuse your friends in a hilarious parody courtroom drama.", android: "https://median.co/share/krrxewx#apk", ios: "https://cybercourt.netlify.app/", emoji: "⚖️" },
+            { title: "Protocol: Traitor", desc: "Complete secret missions or sabotage the team from the shadows.", android: "https://median.co/share/mbbezwz#apk", ios: "https://prtraitor.netlify.app/", emoji: "🔪" },
+            { title: "LifeMode Ultimate", desc: "Smart recovery tracker — train hard but never overexert yourself.", android: "https://median.co/share/nmmpjbp#apk", ios: "https://lifemode.netlify.app/", emoji: "🌿" }
         ];
 
         const WEBSITES_LIST = [
-            { title: "Ad Prezentacia", desc: "Advertising presentation platform — sleek & modern", url: "https://adsprezentacia.netlify.app/",
-                emoji: "📊" },
-            { title: "USA States", desc: "Interactive US states guide & explorer", url: "https://usastates.netlify.app/",
-            emoji: "🇺🇸" },
+            { title: "Ad Prezentacia", desc: "Advertising presentation platform — sleek & modern", url: "https://adsprezentacia.netlify.app/", emoji: "📊" },
+            { title: "USA States", desc: "Interactive US states guide & explorer", url: "https://usastates.netlify.app/", emoji: "🇺🇸" },
             { title: "MGMI", desc: "Modern web experience & digital hub", url: "https://mgmi.netlify.app/#", emoji: "🌐" },
-            { title: "Pr0gramming", desc: "Programming resources, tools & knowledge base",
-                url: "https://pr0gramming.netlify.app/", emoji: "💻" },
-            { title: "Vepkhistkaosani", desc: "The Knight in the Panther's Skin — literary classic",
-                url: "https://vepkhistkaosani.netlify.app/", emoji: "📜" },
-            { title: "Glowroom X", desc: "Premium digital experience & immersive space",
-            url: "https://glowroomx.netlify.app/", emoji: "✨" },
-            { title: "GeoGraph Work", desc: "Geography learning & interactive maps platform",
-                url: "https://geographwork.netlify.app/", emoji: "🗺️" },
-            { title: "Brinjaos Xana", desc: "Unique web destination — Bronze Age digital realm",
-                url: "https://brinjaosxana.netlify.app/", emoji: "🏛️" }
+            { title: "Pr0gramming", desc: "Programming resources, tools & knowledge base", url: "https://pr0gramming.netlify.app/", emoji: "💻" },
+            { title: "Vepkhistkaosani", desc: "The Knight in the Panther's Skin — literary classic", url: "https://vepkhistkaosani.netlify.app/", emoji: "📜" },
+            { title: "Glowroom X", desc: "Premium digital experience & immersive space", url: "https://glowroomx.netlify.app/", emoji: "✨" },
+            { title: "GeoGraph Work", desc: "Geography learning & interactive maps platform", url: "https://geographwork.netlify.app/", emoji: "🗺️" },
+            { title: "Brinjaos Xana", desc: "Unique web destination — Bronze Age digital realm", url: "https://brinjaosxana.netlify.app/", emoji: "🏛️" }
         ];
 
         function escapeHtml(str) {
-            return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (
-                    m === '>') return '&gt;'; return m; });
+            return str.replace(/[&<>]/g, function(m) { if (m === '&') return '&amp;'; if (m === '<') return '&lt;'; if (m === '>') return '&gt;'; return m; });
         }
 
         function renderAllGames() {
@@ -1528,10 +1593,8 @@
             GAMES_LIST.forEach((g, idx) => {
                 const chip = document.createElement('div');
                 chip.className = 'quick-game-chip';
-                chip.innerHTML =
-                    `<span class="qc-emoji">${g.emoji}</span><span class="qc-name">${escapeHtml(g.title)}</span>`;
-                chip.addEventListener('click', (e) => { e.stopPropagation();
-                    openGameModal(idx); });
+                chip.innerHTML = `<span class="qc-emoji">${g.emoji}</span><span class="qc-name">${escapeHtml(g.title)}</span>`;
+                chip.addEventListener('click', (e) => { e.stopPropagation(); openGameModal(idx); });
                 row.appendChild(chip);
             });
         }
@@ -1570,8 +1633,7 @@
                 </div>
                 <div class="get-badge">GET</div>
             `;
-            card.addEventListener('click', (e) => { e.stopPropagation();
-                openGameModal(idx); });
+            card.addEventListener('click', (e) => { e.stopPropagation(); openGameModal(idx); });
             return card;
         }
 
@@ -1589,6 +1651,7 @@
             androidLink.href = game.android;
             iosLink.href = game.ios;
             gameModal.classList.add('show');
+            gameModal.setAttribute('aria-hidden', 'false');
             if (navigator.vibrate) navigator.vibrate(10);
             document.body.style.overflow = 'hidden';
         }
@@ -1596,24 +1659,25 @@
 
         function closeGameModal() {
             gameModal.classList.remove('show');
+            gameModal.setAttribute('aria-hidden', 'true');
             document.body.style.overflow = '';
         }
         window.closeGameModal = closeGameModal;
         gameModal.addEventListener('click', (e) => { if (e.target === gameModal) closeGameModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && gameModal.classList.contains('show'))
-                closeGameModal(); });
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && gameModal.classList.contains('show')) closeGameModal(); });
 
         let audioCtx = null;
-
         function getAudioCtx() {
-            if (!audioCtx) audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
             return audioCtx;
         }
 
         function playClickSound() {
             try {
                 const ctx = getAudioCtx();
-                if (ctx.state === 'suspended') ctx.resume();
+                if (ctx.state === 'suspended') {
+                    ctx.resume().then(() => {}).catch(() => {});
+                }
                 const osc = ctx.createOscillator();
                 const gain = ctx.createGain();
                 osc.connect(gain);
@@ -1644,8 +1708,7 @@
         function setActivePage(pageId) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             const targetPage = document.getElementById(pageId);
-            if (targetPage) { targetPage.classList.add('active');
-                targetPage.scrollTop = 0; }
+            if (targetPage) { targetPage.classList.add('active'); targetPage.scrollTop = 0; }
             document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
             document.querySelectorAll('.dn-link').forEach(b => b.classList.remove('active'));
             const mobileBtn = document.querySelector(`.nav-btn[data-page="${pageId}"]`);
@@ -1654,6 +1717,10 @@
             if (desktopBtn) desktopBtn.classList.add('active');
             if (gameModal.classList.contains('show')) closeGameModal();
             document.body.style.overflow = '';
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (scrollBtn) {
+                scrollBtn.classList.toggle('visible', pageId === 'profile' || pageId === 'home');
+            }
         }
 
         function navigate(btn, pageId, e) {
@@ -1696,9 +1763,7 @@
                     successEl.style.animation = 'fadeInUp 0.35s ease';
                     setTimeout(() => { successEl.style.display = 'none'; }, 4500);
                     btn.textContent = '✅ Sent!';
-                    setTimeout(() => { btn.textContent = originalText;
-                        btn.disabled = false;
-                        btn.style.opacity = '1'; }, 2000);
+                    setTimeout(() => { btn.textContent = originalText; btn.disabled = false; btn.style.opacity = '1'; }, 2000);
                 } else {
                     btn.textContent = '❌ Try Again';
                     btn.disabled = false;
@@ -1728,13 +1793,30 @@
             renderQuickChips();
             renderWebsites();
             setActivePage('home');
+
+            const scrollBtn = document.getElementById('scrollTopBtn');
+            if (scrollBtn) {
+                const updateScrollBtn = () => {
+                    const activePage = document.querySelector('.page.active');
+                    if (!activePage) return;
+                    const scrollY = activePage.scrollTop;
+                    scrollBtn.classList.toggle('visible', scrollY > 200);
+                };
+                document.querySelectorAll('.page').forEach(page => {
+                    page.addEventListener('scroll', updateScrollBtn);
+                });
+                scrollBtn.addEventListener('click', () => {
+                    const activePage = document.querySelector('.page.active');
+                    if (activePage) activePage.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
         });
 
-        document.addEventListener('dblclick', function(e) {
-            if (e.target.closest(
-                    'button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn'
-                    )) { e.preventDefault(); }
-        }, { passive: false });
+        // Double‑click prevention only on interactive elements
+        document.querySelectorAll('button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn').forEach(el => {
+            el.addEventListener('dblclick', e => e.preventDefault());
+        });
 
         document.addEventListener('touchmove', function(e) {
             if (e.target.closest('.quick-games-row')) return;
@@ -1744,10 +1826,8 @@
             if (e.target.closest('.quick-games-row')) return;
         }, { passive: true });
 
-        console.log('%c🕵️ Gurika Portfolio %cReady',
-            'font-family:Playfair Display,serif;font-size:16px;font-weight:700;color:#d4b860;', 'color:#8a8578;');
-        console.log('%cFull Stack Web Developer · 8 games · luxury edition',
-            'font-size:11px;color:#e0cc90;');
+        console.log('%c🕵️ Gurika Portfolio %cReady', 'font-family:Playfair Display,serif;font-size:16px;font-weight:700;color:#d4b860;', 'color:#8a8578;');
+        console.log('%cFull Stack Web Developer · 8 games · luxury edition', 'font-size:11px;color:#e0cc90;');
     </script>
 </body>
 </html>
