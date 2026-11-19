@@ -461,109 +461,70 @@
             letter-spacing: 0.04em;
         }
 
-        .featured-card {
-            background: linear-gradient(160deg, #1a1810 0%, #12110d 40%, #141310 100%);
-            border: 1px solid rgba(200, 155, 70, 0.25);
-            border-radius: var(--card-radius);
-            padding: 18px 16px;
-            position: relative;
-            overflow: hidden;
-            margin: 0 20px;
+        /* ====== CONNECTIONS ====== */
+        .connections-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            padding: 0 20px 18px;
         }
-        .featured-card::before {
-            content: '';
-            position: absolute;
-            top: -40px;
-            right: -40px;
-            width: 120px;
-            height: 120px;
-            background: radial-gradient(circle, rgba(200, 155, 70, 0.18), transparent 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-        .featured-badge {
-            display: inline-block;
-            background: rgba(200, 155, 70, 0.12);
-            border: 1px solid rgba(200, 155, 70, 0.3);
-            color: var(--accent2);
-            font-size: 10px;
-            font-weight: 700;
-            padding: 3px 10px;
-            border-radius: 20px;
-            letter-spacing: 0.09em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-        .app-row {
+        .connection-card {
+            background: var(--card2);
+            border: 1px solid var(--border2);
+            border-radius: var(--card-radius-sm);
+            padding: 11px 12px;
             display: flex;
             align-items: center;
-            gap: 14px;
-            margin-bottom: 14px;
-            position: relative;
-            z-index: 1;
-        }
-        .app-icon-big {
-            width: 56px;
-            height: 56px;
-            border-radius: 14px;
-            background: linear-gradient(145deg, #1a1508, #2a2010, #1a1508);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
-            flex-shrink: 0;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-        .app-name-featured {
-            font-family: 'Playfair Display', serif;
-            font-weight: 600;
-            font-size: var(--font-md);
-            color: #f0e8d5;
-            letter-spacing: -0.2px;
-        }
-        .app-tagline-featured {
-            font-size: var(--font-xs);
-            color: var(--muted);
-            margin-top: 2px;
-        }
-        .dl-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            position: relative;
-            z-index: 1;
-        }
-        .dl-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            padding: 12px 18px;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: var(--font-sm);
-            cursor: pointer;
-            border: none;
-            transition: all 0.15s;
-            letter-spacing: 0.03em;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text2);
+            transition: all 0.2s;
             touch-action: manipulation;
-            font-family: 'DM Sans', sans-serif;
+            overflow: hidden;
+            min-height: 56px;
         }
-        .dl-btn:active {
-            transform: scale(0.95);
-            transition: transform 0.1s;
+        .connection-card:active {
+            transform: scale(0.96);
+            border-color: rgba(200, 155, 70, 0.35);
+            background: #222228;
         }
-        .dl-btn.ios {
-            background: #1c1c22;
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            color: #e0d8c8;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        .connection-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+            background: rgba(200, 155, 70, 0.09);
+            border: 1px solid rgba(200, 155, 70, 0.16);
+            color: var(--accent2);
+            transition: all 0.2s;
         }
-        .dl-btn.android {
-            background: #1a1f18;
-            border: 1px solid rgba(180, 200, 140, 0.25);
-            color: #b8c898;
-            box-shadow: 0 2px 10px rgba(160, 180, 120, 0.08);
+        .connection-card:active .connection-icon {
+            background: rgba(200, 155, 70, 0.18);
+        }
+        .connection-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .connection-name {
+            font-size: var(--font-xs);
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            color: var(--text2);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .connection-handle {
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 1px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .quick-games-row {
@@ -1244,7 +1205,7 @@
             margin-top: 6px;
         }
 
-        button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn {
+        button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn, .connection-card {
             -webkit-user-select: none;
             user-select: none;
         }
@@ -1284,13 +1245,8 @@
             .stats-row { padding: 0 0 20px; gap: 16px; }
             .stat-card { padding: 20px 12px; border-radius: var(--card-radius); cursor: pointer; }
             .stat-card:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.3); box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
-            .featured-card { margin: 0 0 16px; padding: 24px 22px; }
-            .featured-card:hover { border-color: rgba(200,155,70,0.4); box-shadow: 0 8px 30px rgba(0,0,0,0.4); }
-            .dl-buttons { flex-direction: row; gap: 12px; }
-            .dl-btn { flex: 1; padding: 14px 20px; font-size: 14px; }
-            .dl-btn:hover { transform: translateY(-1px); }
-            .dl-btn.ios:hover { box-shadow: 0 4px 16px rgba(255,255,255,0.06); }
-            .dl-btn.android:hover { box-shadow: 0 4px 16px rgba(160,180,120,0.12); }
+            .connections-grid { grid-template-columns: repeat(4, 1fr); gap: 14px; padding: 0 0 24px; max-width: 900px; margin: 0 auto; }
+            .connection-card:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.4); box-shadow: 0 6px 20px rgba(0,0,0,0.35); }
             .quick-games-row { padding: 0; gap: 10px; justify-content: center; flex-wrap: wrap; overflow-x: visible; }
             .quick-game-chip { cursor: pointer; }
             .quick-game-chip:hover { transform: translateY(-2px); border-color: rgba(200,155,70,0.4); box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
@@ -1350,21 +1306,76 @@
             <div class="stat-card"><div class="num">★ 4.8</div><div class="lbl">Rating</div></div>
             <div class="stat-card"><div class="num">FS</div><div class="lbl">Stack</div></div>
         </div>
-        <div class="section-label">🔥 Featured Game</div>
-        <div class="featured-card" style="margin-bottom:16px;">
-            <div class="featured-badge">⭐ Top Pick</div>
-            <div class="app-row">
-                <div class="app-icon-big">🕵️</div>
-                <div>
-                    <div class="app-name-featured">Spy - Pro Edition</div>
-                    <div class="app-tagline-featured">Ultimate spy party game · Find the impostor</div>
+
+        <!-- CONNECTIONS -->
+        <div class="section-label">🔗 Connections</div>
+        <div class="connections-grid">
+
+            <!-- GitHub -->
+            <a class="connection-card" href="https://github.com/GurikaK77" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-github"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">GitHub</div>
+                    <div class="connection-handle">@GurikaK77</div>
                 </div>
-            </div>
-            <div class="dl-buttons">
-                <button class="dl-btn ios" onclick="window.open('https://spy-pro.netlify.app/', '_blank')"><i class="fab fa-apple" style="font-size:15px;"></i> iOS / WebApp</button>
-                <button class="dl-btn android" onclick="window.open('https://median.co/share/xlprbda#apk','_blank')"><i class="fab fa-android" style="font-size:15px;"></i> Android APK</button>
-            </div>
+            </a>
+
+            <!-- Instagram -->
+            <a class="connection-card" href="https://www.instagram.com/gurika.q713/" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-instagram"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">Instagram</div>
+                    <div class="connection-handle">@gurika.q713</div>
+                </div>
+            </a>
+
+            <!-- TikTok -->
+            <a class="connection-card" href="https://www.tiktok.com/@gurik.a_kartv" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-tiktok"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">TikTok</div>
+                    <div class="connection-handle">@gurik.a_kartv</div>
+                </div>
+            </a>
+
+            <!-- Discord -->
+            <a class="connection-card" href="https://discord.com/users/1232394805213003817" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-discord"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">Discord</div>
+                    <div class="connection-handle">@over4ruled</div>
+                </div>
+            </a>
+
+            <!-- Steam -->
+            <a class="connection-card" href="https://steamcommunity.com/profiles/76561198769471744/" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-steam"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">Steam</div>
+                    <div class="connection-handle">@KEROSENE</div>
+                </div>
+            </a>
+
+            <!-- Epic Games -->
+            <a class="connection-card" href="#" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fas fa-gamepad"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">Epic Games</div>
+                    <div class="connection-handle">@Xavit09</div>
+                </div>
+            </a>
+
+            <!-- Xbox -->
+            <a class="connection-card" href="https://www.xbox.com/ka-GE/play/user/FluidBreak3784" target="_blank" rel="noopener">
+                <div class="connection-icon"><i class="fab fa-xbox"></i></div>
+                <div class="connection-info">
+                    <div class="connection-name">Xbox</div>
+                    <div class="connection-handle">@FluidBreak</div>
+                </div>
+            </a>
+
         </div>
+
         <div class="section-label">⚡ Quick Play</div>
         <div class="quick-games-row" id="quickGamesRow"></div>
     </div>
@@ -1393,7 +1404,7 @@
         <div id="websitesGrid" class="games-grid"></div>
     </div>
 
-    <!-- PROFILE PAGE (expanded with new About & Skills) -->
+    <!-- PROFILE PAGE -->
     <div class="page" id="profile" aria-label="Profile page">
         <div class="profile-hero">
             <div class="profile-avatar">G</div>
@@ -1411,13 +1422,11 @@
             <div class="info-card"><div class="ic-icon">✉️</div><div>&lt; 24h reply</div></div>
         </div>
 
-        <!-- Updated About Section -->
         <div class="section-label">👤 About</div>
         <div class="bio-card">
             I'm a 16-year-old Full Stack Web Developer based in Tbilisi, Georgia. I build modern, responsive websites and mobile apps, and I also have hands‑on experience with Unity 2D/3D game development. I love turning creative ideas into polished digital experiences, whether it's a full‑stack web app, a native mobile app, or an interactive game.
         </div>
 
-        <!-- Updated Skills -->
         <div class="section-label">🛠️ Skills & Tech Stack</div>
         <div class="skills-grid">
             <span class="skill-chip">HTML</span>
@@ -1432,7 +1441,6 @@
             <span class="skill-chip">API</span>
         </div>
 
-        <!-- Services -->
         <div class="section-label">💼 Services</div>
         <div class="services-grid">
             <div class="service-card"><div class="service-icon">🌐</div><div>Web Development</div><small>Full stack apps</small></div>
@@ -1441,7 +1449,6 @@
             <div class="service-card"><div class="service-icon">🎨</div><div>UI/UX Design</div><small>Modern interfaces</small></div>
         </div>
 
-        <!-- Experience Timeline -->
         <div class="section-label">📋 Experience</div>
         <div class="timeline">
             <div class="timeline-item">
@@ -1462,7 +1469,6 @@
             </div>
         </div>
 
-        <!-- Education -->
         <div class="section-label">🎓 Education</div>
         <div class="timeline">
             <div class="timeline-item">
@@ -1475,7 +1481,6 @@
             </div>
         </div>
 
-        <!-- Languages -->
         <div class="section-label">🌍 Languages</div>
         <div class="lang-row">
             <span>🇬🇪 Georgian · Native</span>
@@ -1483,7 +1488,6 @@
             <span>🇷🇺 Russian · Intermediate</span>
         </div>
 
-        <!-- GitHub Stats -->
         <div class="section-label">⭐ GitHub Activity</div>
         <div class="github-stats">
             <div class="github-stat"><div class="num">20+</div><div class="lbl">Repositories</div></div>
@@ -1491,10 +1495,8 @@
             <div class="github-stat"><div class="num">🟢</div><div class="lbl">Active</div></div>
         </div>
 
-        <!-- CV Download -->
         <a href="/gurika-cv.pdf" class="cv-btn" download><i class="fas fa-download"></i> Download CV</a>
 
-        <!-- Currently Working On -->
         <div class="currently-banner">
             🚧 Currently building: <strong>New multiplayer party game & personal blog</strong>
         </div>
@@ -1503,7 +1505,6 @@
         <div class="contact-section">
             <h2>📩 Get In Touch</h2>
             <form id="contactForm" action="https://formspree.io/f/xvzjddpw" method="POST" onsubmit="handleSubmit(event)">
-                <!-- Honeypot spam protection -->
                 <input type="text" name="_gotcha" style="display:none">
                 <input type="text" name="name" placeholder="Your name" required autocomplete="name">
                 <input type="email" name="email" placeholder="your@email.com" required autocomplete="email">
@@ -1813,8 +1814,7 @@
             }
         });
 
-        // Double‑click prevention only on interactive elements
-        document.querySelectorAll('button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn').forEach(el => {
+        document.querySelectorAll('button, .nav-btn, .game-card, .app-card, .website-card, .quick-game-chip, .dl-btn, .platform-btn, .close-modal-btn, .get-badge, .profile-link, .submit-btn, .cv-btn, .connection-card').forEach(el => {
             el.addEventListener('dblclick', e => e.preventDefault());
         });
 
